@@ -1,0 +1,629 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>CodeOnlyStoredProcedure</name>
+  </assembly>
+  <members>
+    <member name="T:CodeOnlyStoredProcedure.DataTransformation.EnumValueTransformer">
+      <summary>
+            Transforms a value in the db to an Enumuerated value
+            </summary>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.StoredProcedureParameterAttribute.Name">
+      <summary>
+            Parameter name override. Default value for parameter name is the name of the 
+            property. This overrides that default with a user defined name.
+            </summary>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.StoredProcedureParameterAttribute.Direction">
+      <summary>
+            Defines the direction of data flow for the property/parameter.
+            </summary>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.StoredProcedureParameterAttribute.Size">
+      <summary>
+            Size in bytes of returned data. Should be used on output parameters.
+            </summary>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.StoredProcedureParameterAttribute.Precision">
+      <summary>
+            Size in bytes of returned data. Should be used on output parameters.
+            </summary>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.StoredProcedureParameterAttribute.Scale">
+      <summary>
+            Size in bytes of returned data. Should be used on output parameters.
+            </summary>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.StoredProcedureParameterAttribute.SqlDbType">
+      <summary>
+            Define the SqlDbType for the parameter corresponding to this property. If not set,
+            the type will be inferred from the property type.
+            </summary>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.TableValuedParameterAttribute.Schema">
+      <summary>
+            The schema where the table is in the database
+            </summary>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.TableValuedParameterAttribute.TableName">
+      <summary>
+            The name of the table in the database
+            </summary>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.TableValuedParameterAttribute.CreateSqlParameter(System.String)">
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedureParameterAttribute.CreateSqlParameter(System.String)" inheritedFromTypeName="StoredProcedureParameterAttribute" csharp="!IsNullOrWhiteSpace(propertyName)" vb="Not IsNullOrWhiteSpace(propertyName)">!string.IsNullOrWhiteSpace(propertyName)</requires>
+      <ensures inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedureParameterAttribute.CreateSqlParameter(System.String)" inheritedFromTypeName="StoredProcedureParameterAttribute" csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureParameterAttribute.CreateSqlParameter(System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(propertyName)" vb="Not IsNullOrWhiteSpace(propertyName)">!string.IsNullOrWhiteSpace(propertyName)</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureResultsException.#ctor(System.Type,System.String[])">
+      <requires csharp="resultType != (System.Type)null" vb="resultType &lt;&gt; ((System.Type)Nothing) ">resultType != (System.Type)null</requires>
+      <requires csharp="propertyNames != default(string[]) &amp;&amp; propertyNames.Length &gt; 0" vb="propertyNames &lt;&gt; Nothing AndAlso propertyNames.Length &gt; 0">propertyNames != default(string[]) &amp;&amp; propertyNames.Length &gt; 0</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureResultsException.BuildMessage(System.Type,System.String[])">
+      <requires csharp="resultType != (System.Type)null" vb="resultType &lt;&gt; ((System.Type)Nothing) ">resultType != (System.Type)null</requires>
+      <requires csharp="propertyNames != default(string[]) &amp;&amp; propertyNames.Length &gt; 0" vb="propertyNames &lt;&gt; Nothing AndAlso propertyNames.Length &gt; 0">propertyNames != default(string[]) &amp;&amp; propertyNames.Length &gt; 0</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithParameter``2(``0,System.String,``1)">
+      <requires csharp="(object)sp != null" vb="((Object)sp) &lt;&gt; Nothing">(object)sp != null</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <ensures csharp="(object)result != null" vb="((Object)result) &lt;&gt; Nothing">(object)result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithParameter``2(``0,System.String,``1,System.Data.SqlDbType)">
+      <requires csharp="(object)sp != null" vb="((Object)sp) &lt;&gt; Nothing">(object)sp != null</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <ensures csharp="(object)result != null" vb="((Object)result) &lt;&gt; Nothing">(object)result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithOutputParameter``2(``0,System.String,System.Action{``1},System.Nullable{System.Int32},System.Nullable{System.Byte},System.Nullable{System.Byte})">
+      <requires csharp="(() =&gt; {&#xD;&#xA;    {&#xD;&#xA;        CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass3&lt;TSP, TValue&gt; local_1 = new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass3&lt;TSP, TValue&gt;();&#xD;&#xA;        local_1.setter = setter;&#xD;&#xA;    }&#xD;&#xA;    return (object)sp != null; })()" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass3&lt;TSP, TValue&gt; local_1 = New CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass3(Of TSP, TValue)();&#xD;&#xA;    local_1.setter = setter&#xD;&#xA;    return ((Object)sp) &lt;&gt; Nothing; })()">(() =&gt; {
+    {
+        CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass3&lt;TSP, TValue&gt; local_1 = new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass3&lt;TSP, TValue&gt;();
+        local_1.setter = setter;
+    }
+    return (object)sp != null; })()</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="local_1.setter != null" vb="local_1.setter &lt;&gt; Nothing">local_1.setter != null</requires>
+      <ensures csharp="(object)result != null" vb="((Object)result) &lt;&gt; Nothing">(object)result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithOutputParameter``2(``0,System.String,System.Action{``1},System.Data.SqlDbType,System.Nullable{System.Int32},System.Nullable{System.Byte},System.Nullable{System.Byte})">
+      <requires csharp="(() =&gt; {&#xD;&#xA;    {&#xD;&#xA;        CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass7&lt;TSP, TValue&gt; local_1 = new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass7&lt;TSP, TValue&gt;();&#xD;&#xA;        local_1.setter = setter;&#xD;&#xA;    }&#xD;&#xA;    return (object)sp != null; })()" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass7&lt;TSP, TValue&gt; local_1 = New CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass7(Of TSP, TValue)();&#xD;&#xA;    local_1.setter = setter&#xD;&#xA;    return ((Object)sp) &lt;&gt; Nothing; })()">(() =&gt; {
+    {
+        CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass7&lt;TSP, TValue&gt; local_1 = new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass7&lt;TSP, TValue&gt;();
+        local_1.setter = setter;
+    }
+    return (object)sp != null; })()</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="local_1.setter != null" vb="local_1.setter &lt;&gt; Nothing">local_1.setter != null</requires>
+      <ensures csharp="(object)result != null" vb="((Object)result) &lt;&gt; Nothing">(object)result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithInputOutputParameter``2(``0,System.String,``1,System.Action{``1},System.Nullable{System.Int32},System.Nullable{System.Byte},System.Nullable{System.Byte})">
+      <requires csharp="(() =&gt; {&#xD;&#xA;    {&#xD;&#xA;        CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClassb&lt;TSP, TValue&gt; local_1 = new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClassb&lt;TSP, TValue&gt;();&#xD;&#xA;        local_1.setter = setter;&#xD;&#xA;    }&#xD;&#xA;    return (object)sp != null; })()" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClassb&lt;TSP, TValue&gt; local_1 = New CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClassb(Of TSP, TValue)();&#xD;&#xA;    local_1.setter = setter&#xD;&#xA;    return ((Object)sp) &lt;&gt; Nothing; })()">(() =&gt; {
+    {
+        CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClassb&lt;TSP, TValue&gt; local_1 = new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClassb&lt;TSP, TValue&gt;();
+        local_1.setter = setter;
+    }
+    return (object)sp != null; })()</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="local_1.setter != null" vb="local_1.setter &lt;&gt; Nothing">local_1.setter != null</requires>
+      <ensures csharp="(object)result != null" vb="((Object)result) &lt;&gt; Nothing">(object)result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithInputOutputParameter``2(``0,System.String,``1,System.Action{``1},System.Data.SqlDbType,System.Nullable{System.Int32},System.Nullable{System.Byte},System.Nullable{System.Byte})">
+      <requires csharp="(() =&gt; {&#xD;&#xA;    {&#xD;&#xA;        CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClassf&lt;TSP, TValue&gt; local_1 = new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClassf&lt;TSP, TValue&gt;();&#xD;&#xA;        local_1.setter = setter;&#xD;&#xA;    }&#xD;&#xA;    return (object)sp != null; })()" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClassf&lt;TSP, TValue&gt; local_1 = New CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClassf(Of TSP, TValue)();&#xD;&#xA;    local_1.setter = setter&#xD;&#xA;    return ((Object)sp) &lt;&gt; Nothing; })()">(() =&gt; {
+    {
+        CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClassf&lt;TSP, TValue&gt; local_1 = new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClassf&lt;TSP, TValue&gt;();
+        local_1.setter = setter;
+    }
+    return (object)sp != null; })()</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="local_1.setter != null" vb="local_1.setter &lt;&gt; Nothing">local_1.setter != null</requires>
+      <ensures csharp="(object)result != null" vb="((Object)result) &lt;&gt; Nothing">(object)result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithReturnValue``1(``0,System.Action{System.Int32})">
+      <requires csharp="(() =&gt; {&#xD;&#xA;    {&#xD;&#xA;        CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass13&lt;TSP&gt; local_1 = new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass13&lt;TSP&gt;();&#xD;&#xA;        local_1.returnValue = returnValue;&#xD;&#xA;    }&#xD;&#xA;    return (object)sp != null; })()" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass13&lt;TSP&gt; local_1 = New CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass13(Of TSP)();&#xD;&#xA;    local_1.returnValue = returnValue&#xD;&#xA;    return ((Object)sp) &lt;&gt; Nothing; })()">(() =&gt; {
+    {
+        CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass13&lt;TSP&gt; local_1 = new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass13&lt;TSP&gt;();
+        local_1.returnValue = returnValue;
+    }
+    return (object)sp != null; })()</requires>
+      <requires csharp="local_1.returnValue != null" vb="local_1.returnValue &lt;&gt; Nothing">local_1.returnValue != null</requires>
+      <ensures csharp="(object)result != null" vb="((Object)result) &lt;&gt; Nothing">(object)result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithInput``2(``0,``1)">
+      <requires csharp="(() =&gt; {&#xD;&#xA;    {&#xD;&#xA;        CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass17&lt;TSP, TInput&gt; local_2 = new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass17&lt;TSP, TInput&gt;();&#xD;&#xA;        local_2.input = input;&#xD;&#xA;    }&#xD;&#xA;    return (object)sp != null; })()" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass17&lt;TSP, TInput&gt; local_2 = New CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass17(Of TSP, TInput)();&#xD;&#xA;    local_2.input = input&#xD;&#xA;    return ((Object)sp) &lt;&gt; Nothing; })()">(() =&gt; {
+    {
+        CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass17&lt;TSP, TInput&gt; local_2 = new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass17&lt;TSP, TInput&gt;();
+        local_2.input = input;
+    }
+    return (object)sp != null; })()</requires>
+      <requires csharp="(object)local_2.input != null" vb="((Object)local_2.input) &lt;&gt; Nothing">(object)local_2.input != null</requires>
+      <ensures csharp="(object)result != null" vb="((Object)result) &lt;&gt; Nothing">(object)result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithTableValuedParameter``2(``0,System.String,System.Collections.Generic.IEnumerable{``1},System.String)">
+      <requires csharp="(object)sp != null" vb="((Object)sp) &lt;&gt; Nothing">(object)sp != null</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="table != null" vb="table &lt;&gt; Nothing">table != null</requires>
+      <requires csharp="!IsNullOrWhiteSpace(tableTypeName)" vb="Not IsNullOrWhiteSpace(tableTypeName)">!string.IsNullOrWhiteSpace(tableTypeName)</requires>
+      <ensures csharp="(object)result != null" vb="((Object)result) &lt;&gt; Nothing">(object)result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithTableValuedParameter``2(``0,System.String,System.Collections.Generic.IEnumerable{``1},System.String,System.String)">
+      <requires csharp="(object)sp != null" vb="((Object)sp) &lt;&gt; Nothing">(object)sp != null</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="table != null" vb="table &lt;&gt; Nothing">table != null</requires>
+      <requires csharp="!IsNullOrWhiteSpace(tableTypeSchema)" vb="Not IsNullOrWhiteSpace(tableTypeSchema)">!string.IsNullOrWhiteSpace(tableTypeSchema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(tableTypeName)" vb="Not IsNullOrWhiteSpace(tableTypeName)">!string.IsNullOrWhiteSpace(tableTypeName)</requires>
+      <ensures csharp="(object)result != null" vb="((Object)result) &lt;&gt; Nothing">(object)result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithDataTransformer``1(``0,CodeOnlyStoredProcedure.IDataTransformer)">
+      <requires csharp="(object)sp != null" vb="((Object)sp) &lt;&gt; Nothing">(object)sp != null</requires>
+      <requires csharp="transformer != null" vb="transformer &lt;&gt; Nothing">transformer != null</requires>
+      <ensures csharp="(object)result != null" vb="((Object)result) &lt;&gt; Nothing">(object)result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.Execute(System.Data.IDbCommand,System.Threading.CancellationToken,System.Collections.Generic.IEnumerable{System.Type},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires csharp="cmd != null" vb="cmd &lt;&gt; Nothing">cmd != null</requires>
+      <requires csharp="outputTypes != null" vb="outputTypes &lt;&gt; Nothing">outputTypes != null</requires>
+      <requires csharp="transformers != null" vb="transformers &lt;&gt; Nothing">transformers != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.CreateDataReader(System.Data.IDbCommand,System.Threading.CancellationToken)">
+      <requires csharp="new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass26(){&#xD;&#xA;    cmd = cmd, &#xD;&#xA;}.cmd != null" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass26 local_3_prime = New CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass26();&#xD;&#xA;    (local_3_prime.cmd = cmd)&#xD;&#xA;    return local_3_prime; })().cmd &lt;&gt; Nothing">new CodeOnlyStoredProcedure.StoredProcedureExtensions.&lt;&gt;c__DisplayClass26(){
+    cmd = cmd, 
+}.cmd != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.AddPrecisison(System.Data.SqlClient.SqlParameter,System.Nullable{System.Int32},System.Nullable{System.Byte},System.Nullable{System.Byte})">
+      <requires csharp="parameter != null" vb="parameter &lt;&gt; Nothing">parameter != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.GetMappedPropertiesBySqlName(System.Type)">
+      <requires csharp="t != (System.Type)null" vb="t &lt;&gt; ((System.Type)Nothing) ">t != (System.Type)null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.GetMappedProperties(System.Type)">
+      <requires csharp="t != (System.Type)null" vb="t &lt;&gt; ((System.Type)Nothing) ">t != (System.Type)null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.GetEnumeratedType(System.Type)">
+      <requires csharp="t != (System.Type)null" vb="t &lt;&gt; ((System.Type)Nothing) ">t != (System.Type)null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.ToTableValuedParameter(System.Collections.IEnumerable,System.Type)">
+      <requires csharp="table != null" vb="table &lt;&gt; Nothing">table != null</requires>
+      <requires csharp="enumeratedType != (System.Type)null" vb="enumeratedType &lt;&gt; ((System.Type)Nothing) ">enumeratedType != (System.Type)null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.InferSqlType(System.Type)">
+      <requires csharp="type != (System.Type)null" vb="type &lt;&gt; ((System.Type)Nothing) ">type != (System.Type)null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithResults``1(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="sp != null" vb="sp &lt;&gt; Nothing">sp != null</requires>
+      <requires csharp="sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)" vb="sp.GetType() = typeof(CodeOnlyStoredProcedure.StoredProcedure) ">sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithResults``2(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="sp != null" vb="sp &lt;&gt; Nothing">sp != null</requires>
+      <requires csharp="sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)" vb="sp.GetType() = typeof(CodeOnlyStoredProcedure.StoredProcedure) ">sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithResults``3(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="sp != null" vb="sp &lt;&gt; Nothing">sp != null</requires>
+      <requires csharp="sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)" vb="sp.GetType() = typeof(CodeOnlyStoredProcedure.StoredProcedure) ">sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithResults``4(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="sp != null" vb="sp &lt;&gt; Nothing">sp != null</requires>
+      <requires csharp="sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)" vb="sp.GetType() = typeof(CodeOnlyStoredProcedure.StoredProcedure) ">sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithResults``5(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="sp != null" vb="sp &lt;&gt; Nothing">sp != null</requires>
+      <requires csharp="sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)" vb="sp.GetType() = typeof(CodeOnlyStoredProcedure.StoredProcedure) ">sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithResults``6(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="sp != null" vb="sp &lt;&gt; Nothing">sp != null</requires>
+      <requires csharp="sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)" vb="sp.GetType() = typeof(CodeOnlyStoredProcedure.StoredProcedure) ">sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedureExtensions.WithResults``7(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="sp != null" vb="sp &lt;&gt; Nothing">sp != null</requires>
+      <requires csharp="sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)" vb="sp.GetType() = typeof(CodeOnlyStoredProcedure.StoredProcedure) ">sp.GetType() == typeof(CodeOnlyStoredProcedure.StoredProcedure)</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="T:CodeOnlyStoredProcedure.StoredProcedure">
+      <invariant>!string.IsNullOrWhiteSpace(schema)</invariant>
+      <invariant>!string.IsNullOrWhiteSpace(name)</invariant>
+      <invariant>parameters             != null</invariant>
+      <invariant>outputParameterSetters != null</invariant>
+      <invariant>dataTransformers       != null</invariant>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.#ctor(System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.#ctor(System.String,System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.Create(System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.Create(System.String,System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.CloneWith(System.Data.SqlClient.SqlParameter)">
+      <requires csharp="parameter != null" vb="parameter &lt;&gt; Nothing">parameter != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.CloneWith(System.Data.SqlClient.SqlParameter,System.Action{System.Object})">
+      <requires csharp="parameter != null" vb="parameter &lt;&gt; Nothing">parameter != null</requires>
+      <requires csharp="setter != null" vb="setter &lt;&gt; Nothing">setter != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.CloneWith(CodeOnlyStoredProcedure.IDataTransformer)">
+      <requires csharp="transformer != null" vb="transformer &lt;&gt; Nothing">transformer != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.Execute(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.ExecuteAsync(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.ExecuteAsync(System.Data.IDbConnection,System.Threading.CancellationToken,System.Nullable{System.Int32})">
+      <requires csharp="new CodeOnlyStoredProcedure.StoredProcedure.&lt;&gt;c__DisplayClass1(){&#xD;&#xA;    connection = connection, &#xD;&#xA;    token = token, &#xD;&#xA;    timeout = timeout, &#xD;&#xA;    &lt;&gt;4__this = this, &#xD;&#xA;}.connection != null" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedure.&lt;&gt;c__DisplayClass1 local_0_prime = New CodeOnlyStoredProcedure.StoredProcedure.&lt;&gt;c__DisplayClass1();&#xD;&#xA;    (local_0_prime.connection = connection)&#xD;&#xA;    (local_0_prime.token = token)&#xD;&#xA;    (local_0_prime.timeout = timeout)&#xD;&#xA;    (local_0_prime.&lt;&gt;4__this = Me)&#xD;&#xA;    return local_0_prime; })().connection &lt;&gt; Nothing">new CodeOnlyStoredProcedure.StoredProcedure.&lt;&gt;c__DisplayClass1(){
+    connection = connection, 
+    token = token, 
+    timeout = timeout, 
+    &lt;&gt;4__this = this, 
+}.connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure.Execute(System.Data.IDbConnection,System.Threading.CancellationToken,System.Nullable{System.Int32},System.Collections.Generic.IEnumerable{System.Type})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.StoredProcedure.Schema">
+      <getter>
+        <ensures csharp="!IsNullOrWhiteSpace(result)" vb="Not IsNullOrWhiteSpace(result)">!string.IsNullOrWhiteSpace(result)</ensures>
+      </getter>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.StoredProcedure.Name">
+      <getter>
+        <ensures csharp="!IsNullOrWhiteSpace(result)" vb="Not IsNullOrWhiteSpace(result)">!string.IsNullOrWhiteSpace(result)</ensures>
+      </getter>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.StoredProcedure.FullName">
+      <getter>
+        <ensures csharp="!IsNullOrWhiteSpace(result)" vb="Not IsNullOrWhiteSpace(result)">!string.IsNullOrWhiteSpace(result)</ensures>
+      </getter>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.StoredProcedure.Parameters">
+      <getter>
+        <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+      </getter>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.StoredProcedure.OutputParameterSetters">
+      <getter>
+        <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+      </getter>
+    </member>
+    <member name="P:CodeOnlyStoredProcedure.StoredProcedure.DataTransformers">
+      <getter>
+        <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+      </getter>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`1.#ctor(System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`1.#ctor(System.String,System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`1.#ctor(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="toClone != null" vb="toClone &lt;&gt; Nothing">toClone != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`1.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`1.Execute(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`1.ExecuteAsync(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`1.ExecuteAsync(System.Data.IDbConnection,System.Threading.CancellationToken,System.Nullable{System.Int32})">
+      <requires csharp="new CodeOnlyStoredProcedure.StoredProcedure&lt;T1&gt;.&lt;&gt;c__DisplayClass1(){&#xD;&#xA;    connection = connection, &#xD;&#xA;    token = token, &#xD;&#xA;    timeout = timeout, &#xD;&#xA;    &lt;&gt;4__this = this, &#xD;&#xA;}.connection != null" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedure&lt;T1&gt;.&lt;&gt;c__DisplayClass1 local_0_prime = New CodeOnlyStoredProcedure.StoredProcedure(Of T1).&lt;&gt;c__DisplayClass1();&#xD;&#xA;    (local_0_prime.connection = connection)&#xD;&#xA;    (local_0_prime.token = token)&#xD;&#xA;    (local_0_prime.timeout = timeout)&#xD;&#xA;    (local_0_prime.&lt;&gt;4__this = Me)&#xD;&#xA;    return local_0_prime; })().connection &lt;&gt; Nothing">new CodeOnlyStoredProcedure.StoredProcedure&lt;T1&gt;.&lt;&gt;c__DisplayClass1(){
+    connection = connection, 
+    token = token, 
+    timeout = timeout, 
+    &lt;&gt;4__this = this, 
+}.connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`1.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+      <ensures inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.IDataTransformer.CanTransform(System.Object,System.Type,System.Collections.Generic.IEnumerable{System.Attribute})">
+      <requires csharp="targetType != (System.Type)null" vb="targetType &lt;&gt; ((System.Type)Nothing) ">targetType != (System.Type)null</requires>
+      <requires csharp="propertyAttributes != null" vb="propertyAttributes &lt;&gt; Nothing">propertyAttributes != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.IDataTransformer.Transform(System.Object,System.Type,System.Collections.Generic.IEnumerable{System.Attribute})">
+      <requires csharp="targetType != (System.Type)null" vb="targetType &lt;&gt; ((System.Type)Nothing) ">targetType != (System.Type)null</requires>
+      <requires csharp="propertyAttributes != null" vb="propertyAttributes &lt;&gt; Nothing">propertyAttributes != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`2.#ctor(System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`2.#ctor(System.String,System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`2.#ctor(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="toClone != null" vb="toClone &lt;&gt; Nothing">toClone != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`2.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`2.Execute(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`2.ExecuteAsync(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`2.ExecuteAsync(System.Data.IDbConnection,System.Threading.CancellationToken,System.Nullable{System.Int32})">
+      <requires csharp="new CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2&gt;.&lt;&gt;c__DisplayClass1(){&#xD;&#xA;    connection = connection, &#xD;&#xA;    token = token, &#xD;&#xA;    timeout = timeout, &#xD;&#xA;    &lt;&gt;4__this = this, &#xD;&#xA;}.connection != null" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2&gt;.&lt;&gt;c__DisplayClass1 local_0_prime = New CodeOnlyStoredProcedure.StoredProcedure(Of T1, T2).&lt;&gt;c__DisplayClass1();&#xD;&#xA;    (local_0_prime.connection = connection)&#xD;&#xA;    (local_0_prime.token = token)&#xD;&#xA;    (local_0_prime.timeout = timeout)&#xD;&#xA;    (local_0_prime.&lt;&gt;4__this = Me)&#xD;&#xA;    return local_0_prime; })().connection &lt;&gt; Nothing">new CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2&gt;.&lt;&gt;c__DisplayClass1(){
+    connection = connection, 
+    token = token, 
+    timeout = timeout, 
+    &lt;&gt;4__this = this, 
+}.connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`2.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+      <ensures inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`3.#ctor(System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`3.#ctor(System.String,System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`3.#ctor(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="toClone != null" vb="toClone &lt;&gt; Nothing">toClone != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`3.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`3.Execute(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`3.ExecuteAsync(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`3.ExecuteAsync(System.Data.IDbConnection,System.Threading.CancellationToken,System.Nullable{System.Int32})">
+      <requires csharp="new CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3&gt;.&lt;&gt;c__DisplayClass1(){&#xD;&#xA;    connection = connection, &#xD;&#xA;    token = token, &#xD;&#xA;    timeout = timeout, &#xD;&#xA;    &lt;&gt;4__this = this, &#xD;&#xA;}.connection != null" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3&gt;.&lt;&gt;c__DisplayClass1 local_0_prime = New CodeOnlyStoredProcedure.StoredProcedure(Of T1, T2, T3).&lt;&gt;c__DisplayClass1();&#xD;&#xA;    (local_0_prime.connection = connection)&#xD;&#xA;    (local_0_prime.token = token)&#xD;&#xA;    (local_0_prime.timeout = timeout)&#xD;&#xA;    (local_0_prime.&lt;&gt;4__this = Me)&#xD;&#xA;    return local_0_prime; })().connection &lt;&gt; Nothing">new CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3&gt;.&lt;&gt;c__DisplayClass1(){
+    connection = connection, 
+    token = token, 
+    timeout = timeout, 
+    &lt;&gt;4__this = this, 
+}.connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`3.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+      <ensures inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`4.#ctor(System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`4.#ctor(System.String,System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`4.#ctor(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="toClone != null" vb="toClone &lt;&gt; Nothing">toClone != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`4.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`4.Execute(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`4.ExecuteAsync(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`4.ExecuteAsync(System.Data.IDbConnection,System.Threading.CancellationToken,System.Nullable{System.Int32})">
+      <requires csharp="new CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3, T4&gt;.&lt;&gt;c__DisplayClass1(){&#xD;&#xA;    connection = connection, &#xD;&#xA;    token = token, &#xD;&#xA;    timeout = timeout, &#xD;&#xA;    &lt;&gt;4__this = this, &#xD;&#xA;}.connection != null" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3, T4&gt;.&lt;&gt;c__DisplayClass1 local_0_prime = New CodeOnlyStoredProcedure.StoredProcedure(Of T1, T2, T3, T4).&lt;&gt;c__DisplayClass1();&#xD;&#xA;    (local_0_prime.connection = connection)&#xD;&#xA;    (local_0_prime.token = token)&#xD;&#xA;    (local_0_prime.timeout = timeout)&#xD;&#xA;    (local_0_prime.&lt;&gt;4__this = Me)&#xD;&#xA;    return local_0_prime; })().connection &lt;&gt; Nothing">new CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3, T4&gt;.&lt;&gt;c__DisplayClass1(){
+    connection = connection, 
+    token = token, 
+    timeout = timeout, 
+    &lt;&gt;4__this = this, 
+}.connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`4.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+      <ensures inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`5.#ctor(System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`5.#ctor(System.String,System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`5.#ctor(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="toClone != null" vb="toClone &lt;&gt; Nothing">toClone != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`5.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`5.Execute(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`5.ExecuteAsync(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`5.ExecuteAsync(System.Data.IDbConnection,System.Threading.CancellationToken,System.Nullable{System.Int32})">
+      <requires csharp="new CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3, T4, T5&gt;.&lt;&gt;c__DisplayClass1(){&#xD;&#xA;    connection = connection, &#xD;&#xA;    token = token, &#xD;&#xA;    timeout = timeout, &#xD;&#xA;    &lt;&gt;4__this = this, &#xD;&#xA;}.connection != null" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3, T4, T5&gt;.&lt;&gt;c__DisplayClass1 local_0_prime = New CodeOnlyStoredProcedure.StoredProcedure(Of T1, T2, T3, T4, T5).&lt;&gt;c__DisplayClass1();&#xD;&#xA;    (local_0_prime.connection = connection)&#xD;&#xA;    (local_0_prime.token = token)&#xD;&#xA;    (local_0_prime.timeout = timeout)&#xD;&#xA;    (local_0_prime.&lt;&gt;4__this = Me)&#xD;&#xA;    return local_0_prime; })().connection &lt;&gt; Nothing">new CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3, T4, T5&gt;.&lt;&gt;c__DisplayClass1(){
+    connection = connection, 
+    token = token, 
+    timeout = timeout, 
+    &lt;&gt;4__this = this, 
+}.connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`5.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+      <ensures inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`6.#ctor(System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`6.#ctor(System.String,System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`6.#ctor(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="toClone != null" vb="toClone &lt;&gt; Nothing">toClone != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`6.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`6.Execute(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`6.ExecuteAsync(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`6.ExecuteAsync(System.Data.IDbConnection,System.Threading.CancellationToken,System.Nullable{System.Int32})">
+      <requires csharp="new CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3, T4, T5, T6&gt;.&lt;&gt;c__DisplayClass1(){&#xD;&#xA;    connection = connection, &#xD;&#xA;    token = token, &#xD;&#xA;    timeout = timeout, &#xD;&#xA;    &lt;&gt;4__this = this, &#xD;&#xA;}.connection != null" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3, T4, T5, T6&gt;.&lt;&gt;c__DisplayClass1 local_0_prime = New CodeOnlyStoredProcedure.StoredProcedure(Of T1, T2, T3, T4, T5, T6).&lt;&gt;c__DisplayClass1();&#xD;&#xA;    (local_0_prime.connection = connection)&#xD;&#xA;    (local_0_prime.token = token)&#xD;&#xA;    (local_0_prime.timeout = timeout)&#xD;&#xA;    (local_0_prime.&lt;&gt;4__this = Me)&#xD;&#xA;    return local_0_prime; })().connection &lt;&gt; Nothing">new CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3, T4, T5, T6&gt;.&lt;&gt;c__DisplayClass1(){
+    connection = connection, 
+    token = token, 
+    timeout = timeout, 
+    &lt;&gt;4__this = this, 
+}.connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`6.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+      <ensures inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.DataTransformation.EnumValueTransformer.CanTransform(System.Object,System.Type,System.Collections.Generic.IEnumerable{System.Attribute})">
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.IDataTransformer.CanTransform(System.Object,System.Type,System.Collections.Generic.IEnumerable{System.Attribute})" inheritedFromTypeName="IDataTransformer" csharp="targetType != (System.Type)null" vb="targetType &lt;&gt; ((System.Type)Nothing) ">targetType != (System.Type)null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.IDataTransformer.CanTransform(System.Object,System.Type,System.Collections.Generic.IEnumerable{System.Attribute})" inheritedFromTypeName="IDataTransformer" csharp="propertyAttributes != null" vb="propertyAttributes &lt;&gt; Nothing">propertyAttributes != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.DataTransformation.EnumValueTransformer.Transform(System.Object,System.Type,System.Collections.Generic.IEnumerable{System.Attribute})">
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.IDataTransformer.Transform(System.Object,System.Type,System.Collections.Generic.IEnumerable{System.Attribute})" inheritedFromTypeName="IDataTransformer" csharp="targetType != (System.Type)null" vb="targetType &lt;&gt; ((System.Type)Nothing) ">targetType != (System.Type)null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.IDataTransformer.Transform(System.Object,System.Type,System.Collections.Generic.IEnumerable{System.Attribute})" inheritedFromTypeName="IDataTransformer" csharp="propertyAttributes != null" vb="propertyAttributes &lt;&gt; Nothing">propertyAttributes != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`7.#ctor(System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`7.#ctor(System.String,System.String)">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`7.#ctor(CodeOnlyStoredProcedure.StoredProcedure)">
+      <requires csharp="toClone != null" vb="toClone &lt;&gt; Nothing">toClone != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`7.#ctor(System.String,System.String,System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires csharp="!IsNullOrWhiteSpace(schema)" vb="Not IsNullOrWhiteSpace(schema)">!string.IsNullOrWhiteSpace(schema)</requires>
+      <requires csharp="!IsNullOrWhiteSpace(name)" vb="Not IsNullOrWhiteSpace(name)">!string.IsNullOrWhiteSpace(name)</requires>
+      <requires csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`7.Execute(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`7.ExecuteAsync(System.Data.IDbConnection,System.Nullable{System.Int32})">
+      <requires csharp="connection != null" vb="connection &lt;&gt; Nothing">connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`7.ExecuteAsync(System.Data.IDbConnection,System.Threading.CancellationToken,System.Nullable{System.Int32})">
+      <requires csharp="new CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3, T4, T5, T6, T7&gt;.&lt;&gt;c__DisplayClass1(){&#xD;&#xA;    connection = connection, &#xD;&#xA;    token = token, &#xD;&#xA;    timeout = timeout, &#xD;&#xA;    &lt;&gt;4__this = this, &#xD;&#xA;}.connection != null" vb="(() =&gt; {&#xD;&#xA;    CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3, T4, T5, T6, T7&gt;.&lt;&gt;c__DisplayClass1 local_0_prime = New CodeOnlyStoredProcedure.StoredProcedure(Of T1, T2, T3, T4, T5, T6, T7).&lt;&gt;c__DisplayClass1();&#xD;&#xA;    (local_0_prime.connection = connection)&#xD;&#xA;    (local_0_prime.token = token)&#xD;&#xA;    (local_0_prime.timeout = timeout)&#xD;&#xA;    (local_0_prime.&lt;&gt;4__this = Me)&#xD;&#xA;    return local_0_prime; })().connection &lt;&gt; Nothing">new CodeOnlyStoredProcedure.StoredProcedure&lt;T1, T2, T3, T4, T5, T6, T7&gt;.&lt;&gt;c__DisplayClass1(){
+    connection = connection, 
+    token = token, 
+    timeout = timeout, 
+    &lt;&gt;4__this = this, 
+}.connection != null</requires>
+      <ensures csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+    <member name="M:CodeOnlyStoredProcedure.StoredProcedure`7.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})">
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="parameters != null" vb="parameters &lt;&gt; Nothing">parameters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="outputParameterSetters != null" vb="outputParameterSetters &lt;&gt; Nothing">outputParameterSetters != null</requires>
+      <requires inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="dataTransformers != null" vb="dataTransformers &lt;&gt; Nothing">dataTransformers != null</requires>
+      <ensures inheritedFrom="M:CodeOnlyStoredProcedure.StoredProcedure.CloneCore(System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Action{System.Object}}},System.Collections.Generic.IEnumerable{CodeOnlyStoredProcedure.IDataTransformer})" inheritedFromTypeName="StoredProcedure" csharp="result != null" vb="result &lt;&gt; Nothing">result != null</ensures>
+    </member>
+  </members>
+</doc>

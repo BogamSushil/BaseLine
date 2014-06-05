@@ -1,0 +1,16 @@
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\Data.dll
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\EntityFramework.dll
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\CodeOnlyStoredProcedure.dll
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\System.Collections.Immutable.dll
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\Data.pdb
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\EntityFramework.xml
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\CodeOnlyStoredProcedure.xml
+D:\Projects\BaseLine\Data\ConsoleApplication1\bin\Debug\System.Collections.Immutable.xml
+D:\Projects\BaseLine\Data\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+D:\Projects\BaseLine\Data\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+D:\Projects\BaseLine\Data\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

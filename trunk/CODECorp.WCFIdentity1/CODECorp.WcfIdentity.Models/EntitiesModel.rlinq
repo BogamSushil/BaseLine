@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="EntitiesModel" namespace="CODECorp.WcfIdentity.Models" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="EntitiesModel" backend="mssql" default-schema="dbo" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="CODECorp.WcfIdentity.Models" default="true">
+      <orm:class name="AspNetUser" uniqueId="a7433fc5-6d4c-454f-a7b7-8121f0435e2e">
+        <orm:table name="AspNetUsers" />
+        <orm:identity>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="ba3112bd-afc9-449e-8750-2649a00bce3e" type="System.String">
+          <orm:column name="Id" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_userName" property="UserName" behavior="readwrite" uniqueId="1a306182-5c20-459e-9dd6-a06e7d69b8eb" type="System.String">
+          <orm:column name="UserName" sql-type="nvarchar(max)" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_passwordHash" property="PasswordHash" behavior="readwrite" uniqueId="cc344503-7755-455f-80d7-69121f49f889" type="System.String">
+          <orm:column name="PasswordHash" sql-type="nvarchar(max)" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_securityStamp" property="SecurityStamp" behavior="readwrite" uniqueId="94358b69-4166-4b6e-80a6-b41d9f318e68" type="System.String">
+          <orm:column name="SecurityStamp" sql-type="nvarchar(max)" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_discriminator" property="Discriminator" behavior="readwrite" uniqueId="dd1f6c25-dcea-48e0-b45b-e36ecb4f73af" type="System.String">
+          <orm:column name="Discriminator" sql-type="nvarchar" nullable="false" length="128" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_lastName" property="LastName" behavior="readwrite" uniqueId="f630ed07-5a67-4a72-a6fb-bf86588f6754" type="System.String">
+          <orm:column name="LastName" sql-type="nvarchar" nullable="true" length="500" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_firstName" property="FirstName" behavior="readwrite" uniqueId="dd240068-1f3d-4748-83eb-af85a9b2d0a2" type="System.String">
+          <orm:column name="FirstName" sql-type="nvarchar" nullable="true" length="500" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_aspNetUserLogins" property="AspNetUserLogins" behavior="readwrite" uniqueId="86f33094-4b62-41a8-a7ec-33f844875af3" type="CODECorp.WcfIdentity.Models.AspNetUserLogin">
+          <orm:collection element-class="CODECorp.WcfIdentity.Models.AspNetUserLogin" inverse-field="_aspNetUser" managed="true" order-by="" uniqueId="44538672-b29a-4e77-9fa6-8e02f2333037" />
+        </orm:field>
+        <orm:field name="_aspNetUserClaims" property="AspNetUserClaims" behavior="readwrite" uniqueId="ad9e6caf-3399-439d-a9ce-445d86cdabcf" type="CODECorp.WcfIdentity.Models.AspNetUserClaim">
+          <orm:collection element-class="CODECorp.WcfIdentity.Models.AspNetUserClaim" inverse-field="_aspNetUser" managed="true" order-by="" uniqueId="e918a496-4ce1-46a8-b1bc-30a6a5ff2f20" />
+        </orm:field>
+        <orm:field name="_aspNetRoles" property="AspNetRoles" behavior="readwrite" uniqueId="6ac0af57-964f-49d7-84c9-e91658f55bc8" type="CODECorp.WcfIdentity.Models.AspNetRole">
+          <orm:collection element-class="CODECorp.WcfIdentity.Models.AspNetRole" inverse-field="_aspNetUsers" managed="true" order-by="" uniqueId="07d6707c-467f-40cc-b5b5-ad68d2a0ddea" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="AspNetUserLogin" uniqueId="ab35fada-b7c7-43e0-bb12-69692a8c992c">
+        <orm:table name="AspNetUserLogins" />
+        <orm:identity>
+          <orm:multiple-field>
+            <orm:single-field field-name="_userId" />
+            <orm:single-field field-name="_loginProvider" />
+            <orm:single-field field-name="_providerKey" />
+          </orm:multiple-field>
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_userId" property="UserId" behavior="readwrite" uniqueId="f999f5df-0cd4-4901-a2a9-397aeb0da4f3" type="System.String">
+          <orm:column name="UserId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_loginProvider" property="LoginProvider" behavior="readwrite" uniqueId="daaa2b0b-d178-40cd-8480-9fe5a59ba091" type="System.String">
+          <orm:column name="LoginProvider" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_providerKey" property="ProviderKey" behavior="readwrite" uniqueId="de0521cf-97b7-4249-9aea-d2b50ec838b4" type="System.String">
+          <orm:column name="ProviderKey" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_aspNetUser" property="AspNetUser" behavior="readwrite" uniqueId="865862ab-ae9d-4f0e-9126-05b08d1d86aa" type="CODECorp.WcfIdentity.Models.AspNetUser">
+          <orm:reference uniqueId="44538672-b29a-4e77-9fa6-8e02f2333037" association-name="AspNetUserLoginHasAspNetUser">
+            <orm:sharedfield name="_userId" target-class="CODECorp.WcfIdentity.Models.AspNetUser" target-field="_id" />
+            <orm:constraint name="FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId" delete-action="cascade" destination-table="AspNetUsers" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="IX_UserId">
+          <orm:columnMapping>
+            <orm:column name="UserId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="AspNetUserClaim" uniqueId="696693e2-2ec7-4de3-9de5-5c20f64ed2ce">
+        <orm:table name="AspNetUserClaims" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="92e12a11-d7a4-4a07-8c83-4282237cc0c5" type="System.Int32">
+          <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_claimType" property="ClaimType" behavior="readwrite" uniqueId="b26fe44d-a2d0-4107-97db-90bbb8f297a6" type="System.String">
+          <orm:column name="ClaimType" sql-type="nvarchar(max)" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_claimValue" property="ClaimValue" behavior="readwrite" uniqueId="106963d8-6526-4d4c-be0e-98ae0cab969c" type="System.String">
+          <orm:column name="ClaimValue" sql-type="nvarchar(max)" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_user_Id" property="User_Id" behavior="readwrite" uniqueId="3bfdd788-bfdc-477f-b30a-a308dd26ff8d" type="System.String">
+          <orm:column name="User_Id" sql-type="nvarchar" nullable="false" length="128" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_aspNetUser" property="AspNetUser" behavior="readwrite" uniqueId="2a38e79a-27d5-40b0-b5a1-54d8fccbd32f" type="CODECorp.WcfIdentity.Models.AspNetUser">
+          <orm:reference uniqueId="e918a496-4ce1-46a8-b1bc-30a6a5ff2f20" association-name="AspNetUserClaimHasAspNetUser">
+            <orm:sharedfield name="_user_Id" target-class="CODECorp.WcfIdentity.Models.AspNetUser" target-field="_id" />
+            <orm:constraint name="FK_dbo.AspNetUserClaims_dbo.AspNetUsers_User_Id" delete-action="cascade" destination-table="AspNetUsers" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="IX_User_Id">
+          <orm:columnMapping>
+            <orm:column name="User_Id" sql-type="nvarchar" nullable="false" length="128" scale="0" ado-type="UnicodeStringVariableLength" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="AspNetRole" uniqueId="f7358f72-3e80-4319-a7d3-074af75fdf92">
+        <orm:table name="AspNetRoles" />
+        <orm:identity>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="353f37a7-700f-44a1-bfd6-31421e9f6512" type="System.String">
+          <orm:column name="Id" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_name" property="Name" behavior="readwrite" uniqueId="adcb8819-30ae-49df-bc90-4f35725211eb" type="System.String">
+          <orm:column name="Name" sql-type="nvarchar(max)" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_aspNetUsers" property="AspNetUsers" behavior="readwrite" uniqueId="e8526d20-41a0-49e6-8d0f-97877327acdc" type="CODECorp.WcfIdentity.Models.AspNetUser">
+          <orm:join-table uniqueId="07d6707c-467f-40cc-b5b5-ad68d2a0ddea" association-name="AspNetRolesHaveAspNetUsers">
+            <orm:table name="AspNetUserRoles" join-table="true" />
+            <orm:owner>
+              <orm:constraint name="FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId" delete-action="cascade" destination-table="AspNetRoles">
+                <orm:column name="RoleId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" target-class="CODECorp.WcfIdentity.Models.AspNetRole" target-field="_id" />
+              </orm:constraint>
+            </orm:owner>
+            <orm:value>
+              <orm:constraint name="FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId" delete-action="cascade" destination-table="AspNetUsers">
+                <orm:column name="UserId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" target-class="CODECorp.WcfIdentity.Models.AspNetUser" target-field="_id" />
+              </orm:constraint>
+            </orm:value>
+          </orm:join-table>
+        </orm:field>
+      </orm:class>
+    </orm:namespace>
+    <orm:schema schema="">
+      <orm:table name="Industry">
+        <orm:column name="IndustryID" sql-type="uniqueidentifier" nullable="false" length="0" scale="0" primary-key="true" ado-type="Guid" />
+        <orm:column name="Name" sql-type="nvarchar" nullable="false" length="250" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Description" sql-type="nvarchar(max)" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+      </orm:table>
+      <orm:table name="Campaign">
+        <orm:column name="CampaignID" sql-type="uniqueidentifier" nullable="false" length="0" scale="0" primary-key="true" ado-type="Guid" />
+        <orm:column name="Name" sql-type="nvarchar" nullable="false" length="100" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Intro" sql-type="nvarchar" nullable="true" length="200" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Description" sql-type="nvarchar(max)" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="IndustryID" sql-type="uniqueidentifier" nullable="false" length="0" scale="0" ado-type="Guid" />
+        <orm:column name="EquityConsideration" sql-type="decimal" nullable="false" length="18" scale="0" ado-type="Decimal" />
+        <orm:column name="EquityPrice" sql-type="money" nullable="false" length="0" scale="0" ado-type="Currency" />
+        <orm:column name="FundingAmount" sql-type="money" nullable="false" length="0" scale="0" ado-type="Currency" />
+        <orm:column name="StartDate" sql-type="datetime2" nullable="false" length="7" scale="0" ado-type="DateTime" />
+        <orm:column name="EndDate" sql-type="datetime2" nullable="false" length="7" scale="0" ado-type="DateTime" />
+        <orm:constraint name="FK_Campaign_Industry" delete-action="dbdefaultrule" destination-table="Industry">
+          <orm:column name="IndustryID" sql-type="uniqueidentifier" nullable="false" length="0" scale="0" ado-type="Guid" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="AspNetUsers">
+        <orm:column name="Id" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="UserName" sql-type="nvarchar(max)" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="PasswordHash" sql-type="nvarchar(max)" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="SecurityStamp" sql-type="nvarchar(max)" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="Discriminator" sql-type="nvarchar" nullable="false" length="128" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="LastName" sql-type="nvarchar" nullable="true" length="500" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="FirstName" sql-type="nvarchar" nullable="true" length="500" scale="0" ado-type="UnicodeStringVariableLength" />
+      </orm:table>
+      <orm:table name="AspNetUserRoles" join-table="true">
+        <orm:column name="UserId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="RoleId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        <orm:index name="IX_RoleId">
+          <orm:columnMapping>
+            <orm:column name="RoleId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="IX_UserId">
+          <orm:columnMapping>
+            <orm:column name="UserId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId" delete-action="cascade" destination-table="AspNetRoles">
+          <orm:column name="RoleId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        </orm:constraint>
+        <orm:constraint name="FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId" delete-action="cascade" destination-table="AspNetUsers">
+          <orm:column name="UserId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="AspNetUserLogins">
+        <orm:column name="UserId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="LoginProvider" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="ProviderKey" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        <orm:index name="IX_UserId">
+          <orm:columnMapping>
+            <orm:column name="UserId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId" delete-action="cascade" destination-table="AspNetUsers">
+          <orm:column name="UserId" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="AspNetUserClaims">
+        <orm:column name="Id" sql-type="int" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="ClaimType" sql-type="nvarchar(max)" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="ClaimValue" sql-type="nvarchar(max)" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="User_Id" sql-type="nvarchar" nullable="false" length="128" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:index name="IX_User_Id">
+          <orm:columnMapping>
+            <orm:column name="User_Id" sql-type="nvarchar" nullable="false" length="128" scale="0" ado-type="UnicodeStringVariableLength" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="FK_dbo.AspNetUserClaims_dbo.AspNetUsers_User_Id" delete-action="cascade" destination-table="AspNetUsers">
+          <orm:column name="User_Id" sql-type="nvarchar" nullable="false" length="128" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="AspNetRoles">
+        <orm:column name="Id" sql-type="nvarchar" nullable="false" length="128" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Name" sql-type="nvarchar(max)" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+      </orm:table>
+      <orm:table name="__MigrationHistory">
+        <orm:column name="MigrationId" sql-type="nvarchar" nullable="false" length="150" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="ContextKey" sql-type="nvarchar" nullable="false" length="300" scale="0" primary-key="true" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Model" sql-type="varbinary(max)" nullable="false" length="0" scale="0" ado-type="LongVarBinary" />
+        <orm:column name="ProductVersion" sql-type="nvarchar" nullable="false" length="32" scale="0" ado-type="UnicodeStringVariableLength" />
+      </orm:table>
+    </orm:schema>
+    <orm:relational-naming-settings>
+      <orm:source-strategy>Property</orm:source-strategy>
+      <orm:remove-camel-case>False</orm:remove-camel-case>
+    </orm:relational-naming-settings>
+  </orm:orm>
+  <ModelSettings xmlns="">
+    <AppConfigConnectionPropertyName>DefaultConnection</AppConfigConnectionPropertyName>
+    <AppConfigConnectionString>data source=THEMONSTER8\SQL2012;initial catalog=CODECorp.WcfIdentity;integrated security=True</AppConfigConnectionString>
+    <InitialCatalog>CODECorp.WcfIdentity</InitialCatalog>
+    <NamingSettings>
+      <ClassRules>
+        <CaseMode>PascalCase</CaseMode>
+        <PluralizationMode>Singularize</PluralizationMode>
+      </ClassRules>
+      <FieldRules>
+        <AddPrefix>_</AddPrefix>
+        <CaseMode>CamelCase</CaseMode>
+      </FieldRules>
+      <PropertyRules>
+        <CaseMode>PascalCase</CaseMode>
+      </PropertyRules>
+      <NavigationPropertyRules />
+    </NamingSettings>
+    <CodeGenerationSettings>
+      <GenerateDataAnnotationAttributes>true</GenerateDataAnnotationAttributes>
+      <MappingDefinitionType>Xml</MappingDefinitionType>
+    </CodeGenerationSettings>
+    <SchemaUpdateSettings />
+    <BackendConfigurationSettings>
+      <BackendConfiguration>
+        <Backend>MsSql</Backend>
+        <ProviderName>System.Data.SqlClient</ProviderName>
+      </BackendConfiguration>
+    </BackendConfigurationSettings>
+  </ModelSettings>
+  <Types>
+    <DomainClass Id="a7433fc5-6d4c-454f-a7b7-8121f0435e2e" name="AspNetUser" namespace="CODECorp.WcfIdentity.Models" showPropertiesCompartment="true" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="ba3112bd-afc9-449e-8750-2649a00bce3e" name="Id" label="Id : String" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="dd1f6c25-dcea-48e0-b45b-e36ecb4f73af" name="Discriminator" label="Discriminator : String" kind="Persistent" fieldName="_discriminator" />
+      <Property Id="cc344503-7755-455f-80d7-69121f49f889" name="PasswordHash" label="PasswordHash : String" kind="Persistent" fieldName="_passwordHash" />
+      <Property Id="94358b69-4166-4b6e-80a6-b41d9f318e68" name="SecurityStamp" label="SecurityStamp : String" kind="Persistent" fieldName="_securityStamp" />
+      <Property Id="1a306182-5c20-459e-9dd6-a06e7d69b8eb" name="UserName" label="UserName : String" kind="Persistent" fieldName="_userName" />
+      <Property Id="f630ed07-5a67-4a72-a6fb-bf86588f6754" name="LastName" label="LastName : String" kind="Persistent" fieldName="_lastName" />
+      <Property Id="dd240068-1f3d-4748-83eb-af85a9b2d0a2" name="FirstName" label="FirstName : String" kind="Persistent" fieldName="_firstName" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="db7cbc13-95c3-4d2e-a980-3730a78e768d">
+          <NavigationalProperty Id="86f33094-4b62-41a8-a7ec-33f844875af3" name="AspNetUserLogins" type="IList&lt;AspNetUserLogin&gt;" label="AspNetUserLogins : IList&lt;AspNetUserLogin&gt;" nullable="true" kind="Persistent" fieldName="_aspNetUserLogins" isDependent="false" isManaged="true" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="a0c6dd9e-ef5d-43d9-af2a-833e8610007b">
+          <NavigationalProperty Id="ad9e6caf-3399-439d-a9ce-445d86cdabcf" name="AspNetUserClaims" type="IList&lt;AspNetUserClaim&gt;" label="AspNetUserClaims : IList&lt;AspNetUserClaim&gt;" nullable="true" kind="Persistent" fieldName="_aspNetUserClaims" isDependent="false" isManaged="true" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="2040a5d6-a0ac-49f8-8bab-a580954d0c76">
+          <NavigationalProperty Id="6ac0af57-964f-49d7-84c9-e91658f55bc8" name="AspNetRoles" type="IList&lt;AspNetRole&gt;" label="AspNetRoles : IList&lt;AspNetRole&gt;" nullable="true" kind="Persistent" fieldName="_aspNetRoles" isDependent="false" isManaged="true" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="ab35fada-b7c7-43e0-bb12-69692a8c992c" name="AspNetUserLogin" namespace="CODECorp.WcfIdentity.Models" showPropertiesCompartment="true" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="daaa2b0b-d178-40cd-8480-9fe5a59ba091" name="LoginProvider" label="LoginProvider : String" kind="Persistent" identity="true" fieldName="_loginProvider" />
+      <Property Id="de0521cf-97b7-4249-9aea-d2b50ec838b4" name="ProviderKey" label="ProviderKey : String" kind="Persistent" identity="true" fieldName="_providerKey" />
+      <Property Id="f999f5df-0cd4-4901-a2a9-397aeb0da4f3" name="UserId" label="UserId : String" kind="Persistent" identity="true" fieldName="_userId" />
+      <AssociationTargets>
+        <Association Id="44538672-b29a-4e77-9fa6-8e02f2333037" SourceMultiplicity="One" name="AspNetUserLoginHasAspNetUser">
+          <DomainClassMoniker name="/EntitiesModel/AspNetUser" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="12734741-0dc8-4530-8ef9-631206572ece">
+              <NavigationalPropertyMoniker name="/EntitiesModel/AspNetUser/AspNetUserLogins" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="3d8ac143-bc96-45ff-80e8-60d31fa23767">
+              <NavigationalPropertyMoniker name="/EntitiesModel/AspNetUserLogin/AspNetUser" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="b20e8992-a4be-4a03-8572-435bd1a9e571">
+          <NavigationalProperty Id="865862ab-ae9d-4f0e-9126-05b08d1d86aa" name="AspNetUser" type="AspNetUser" label="AspNetUser : AspNetUser" nullable="true" kind="Persistent" fieldName="_aspNetUser" isDependent="false" isManaged="true" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="696693e2-2ec7-4de3-9de5-5c20f64ed2ce" name="AspNetUserClaim" namespace="CODECorp.WcfIdentity.Models" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="92e12a11-d7a4-4a07-8c83-4282237cc0c5" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="b26fe44d-a2d0-4107-97db-90bbb8f297a6" name="ClaimType" label="ClaimType : String" kind="Persistent" fieldName="_claimType" />
+      <Property Id="106963d8-6526-4d4c-be0e-98ae0cab969c" name="ClaimValue" label="ClaimValue : String" kind="Persistent" fieldName="_claimValue" />
+      <Property Id="3bfdd788-bfdc-477f-b30a-a308dd26ff8d" name="User_Id" label="User_Id : String" kind="Persistent" fieldName="_user_Id" />
+      <AssociationTargets>
+        <Association Id="e918a496-4ce1-46a8-b1bc-30a6a5ff2f20" SourceMultiplicity="One" name="AspNetUserClaimHasAspNetUser">
+          <DomainClassMoniker name="/EntitiesModel/AspNetUser" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="6edd0001-3390-45d2-8740-45f3923f7b0e">
+              <NavigationalPropertyMoniker name="/EntitiesModel/AspNetUser/AspNetUserClaims" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="7777c5f2-d2ad-42df-aaca-46e3a3058126">
+              <NavigationalPropertyMoniker name="/EntitiesModel/AspNetUserClaim/AspNetUser" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="4b9adc7f-6c18-49e8-b8da-464712bc2471">
+          <NavigationalProperty Id="2a38e79a-27d5-40b0-b5a1-54d8fccbd32f" name="AspNetUser" type="AspNetUser" label="AspNetUser : AspNetUser" nullable="true" kind="Persistent" fieldName="_aspNetUser" isDependent="false" isManaged="true" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="f7358f72-3e80-4319-a7d3-074af75fdf92" name="AspNetRole" namespace="CODECorp.WcfIdentity.Models" showPropertiesCompartment="true" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="353f37a7-700f-44a1-bfd6-31421e9f6512" name="Id" label="Id : String" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="adcb8819-30ae-49df-bc90-4f35725211eb" name="Name" label="Name : String" kind="Persistent" fieldName="_name" />
+      <AssociationTargets>
+        <Association Id="07d6707c-467f-40cc-b5b5-ad68d2a0ddea" name="AspNetRolesHaveAspNetUsers">
+          <DomainClassMoniker name="/EntitiesModel/AspNetUser" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="585b4dee-29c8-4740-8b67-51280098564d">
+              <NavigationalPropertyMoniker name="/EntitiesModel/AspNetUser/AspNetRoles" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="1588c466-08a8-4555-a45b-32452cc5acb5">
+              <NavigationalPropertyMoniker name="/EntitiesModel/AspNetRole/AspNetUsers" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="3c47cdbf-b983-4c0e-bce6-6ade4eadef00">
+          <NavigationalProperty Id="e8526d20-41a0-49e6-8d0f-97877327acdc" name="AspNetUsers" type="IList&lt;AspNetUser&gt;" label="AspNetUsers : IList&lt;AspNetUser&gt;" nullable="true" kind="Persistent" fieldName="_aspNetUsers" isDependent="false" isManaged="true" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+  </Types>
+  <domainContext>
+    <domainModelHasDomainContext Id="f3accee2-9679-48f1-917b-8c1d1fe29f8d">
+      <domainContainer name="EntitiesModel" namespace="CODECorp.WcfIdentity.Models" showPropertiesCompartment="true">
+        <entitySetProperty name="AspNetUsers" namespace="CODECorp.WcfIdentity.Models" type="AspNetUser" label="AspNetUsers : IQueryable&lt;CODECorp.WcfIdentity.Models.AspNetUser&gt;" />
+        <entitySetProperty name="AspNetUserLogins" namespace="CODECorp.WcfIdentity.Models" type="AspNetUserLogin" label="AspNetUserLogins : IQueryable&lt;CODECorp.WcfIdentity.Models.AspNetUserLogin&gt;" />
+        <entitySetProperty name="AspNetUserClaims" namespace="CODECorp.WcfIdentity.Models" type="AspNetUserClaim" label="AspNetUserClaims : IQueryable&lt;CODECorp.WcfIdentity.Models.AspNetUserClaim&gt;" />
+        <entitySetProperty name="AspNetRoles" namespace="CODECorp.WcfIdentity.Models" type="AspNetRole" label="AspNetRoles : IQueryable&lt;CODECorp.WcfIdentity.Models.AspNetRole&gt;" />
+      </domainContainer>
+    </domainModelHasDomainContext>
+  </domainContext>
+</DomainModel>

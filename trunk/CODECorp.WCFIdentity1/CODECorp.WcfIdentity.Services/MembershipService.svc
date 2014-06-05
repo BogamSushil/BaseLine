@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="CODECorp.WcfIdentity.Services.MembershipService" CodeBehind="MembershipService.svc.cs" %>
